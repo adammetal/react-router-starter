@@ -1,7 +1,7 @@
 import { Routes, Route, Outlet, BrowserRouter } from "react-router-dom";
-import CatFarm from "./components/CatFarm";
-import CatStore from "./components/CatStore";
-import Home from "./components/Home";
+import CatFarm from "./pages/CatFarm";
+import CatStore from "./pages/CatStore";
+import Home from "./pages/Home";
 import Main from "./components/Main";
 import NavBar from "./components/NavBar";
 
