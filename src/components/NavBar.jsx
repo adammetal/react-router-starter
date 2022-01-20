@@ -8,7 +8,7 @@ const Nav = styled.nav`
 
 const NavBar = () => (
   <Nav>
-    <Link to="/">Home</Link>
+    <Link to="/">Home Page</Link>
     <Link to="/cat-farm">Cat Farm</Link>
     <Link to="/cat-store">Cat Store</Link>
   </Nav>
