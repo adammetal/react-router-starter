@@ -6,14 +6,18 @@ const CatBox = styled.div`
   padding: 2rem;
   border: 2px solid black;
   border-radius: 3px;
+  max-width: 50%;
+  width: 50%;
+  height: 80%;
+  max-height: 80%;
+`;
+
+const Img = styled.img`
+  width: 100%;
 `;
 
 const CatImage = (props) => {
-  return (
-    <div>
-      <img src={props.src} alt="cat" />
-    </div>
-  );
+  return <Img src={props.src} alt="cat" />;
 };
 
 const CatDisplay = () => {
@@ -39,7 +43,13 @@ const CatDisplay = () => {
   }, []);
 
   const handleYes = () => {
-    // TODO: save kitten to local storage
+    const farmRaw = localStorage.getItem("farm") ?? "[]";
+    const farmArr = JSON.parse(farmRaw);
+
+    farmArr.push({ ...cat });
+
+    localStorage.setItem("farm", JSON.stringify(farmArr));
+
     fetchRandomKitten();
   };
 
