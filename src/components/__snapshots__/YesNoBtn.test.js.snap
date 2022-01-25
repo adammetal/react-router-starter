@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`YesNoButton Snapshot test 1`] = `
+<div>
+  <div>
+    Do you need that kitten???
+    <div>
+      <button
+        class="sc-bdvvtL sc-gsDKAQ khgiVi jlniZw"
+      >
+        Yes
+      </button>
+      <button
+        class="sc-bdvvtL sc-dkPtRN khgiVi flXrLY"
+      >
+        No
+      </button>
+    </div>
+  </div>
+</div>
+`;
