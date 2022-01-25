@@ -1,6 +1,14 @@
-import { useEffect, useState } from "react";
+import useNetworkRequest from "../hooks/useNetworkRequest";
 import styled from "styled-components";
 import YesNoBtn from "./YesNoBtn";
+import Store from "../lib/store/store";
+
+const CAT_API = "https://api.thecatapi.com/v1/images/search";
+
+const catDataMapper = (data) => ({
+  id: data[0].id,
+  url: data[0].url,
+});
 
 const CatBox = styled.div`
   padding: 2rem;
@@ -21,34 +29,13 @@ const CatImage = (props) => {
 };
 
 const CatDisplay = () => {
-  const [cat, setCat] = useState({});
-  const [loading, setIsLoading] = useState(true);
-
-  const fetchRandomKitten = async () => {
-    setIsLoading(true);
-
-    const response = await fetch("https://api.thecatapi.com/v1/images/search");
-    const json = await response.json();
-
-    setCat({
-      id: json[0].id,
-      url: json[0].url,
-    });
-
-    setIsLoading(false);
-  };
-
-  useEffect(() => {
-    fetchRandomKitten();
-  }, []);
+  const [cat, loading, fetchRandomKitten] = useNetworkRequest(CAT_API, catDataMapper);
 
   const handleYes = () => {
-    const farmRaw = localStorage.getItem("farm") ?? "[]";
-    const farmArr = JSON.parse(farmRaw);
-
-    farmArr.push({ ...cat });
-
-    localStorage.setItem("farm", JSON.stringify(farmArr));
+    const farm = new Store('farm');
+    const cats = farm.load();
+    cats.push({ ...cat });
+    farm.save(cats);
 
     fetchRandomKitten();
   };
