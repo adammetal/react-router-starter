@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { useState, useEffect } from 'react';
+import Store from '../lib/store/store';
 
 const Grid = styled.div`
   display: grid;
@@ -26,9 +27,8 @@ const CatGrid = () => {
   const [cats, setCats] = useState([]);
 
   useEffect(() => {
-    const farmRaw = localStorage.getItem("farm") ?? "[]";
-    const farmArr = JSON.parse(farmRaw);
-    setCats(farmArr);
+    const farm = new Store('farm');
+    setCats(farm.load([]));
   }, []);
 
   return (
