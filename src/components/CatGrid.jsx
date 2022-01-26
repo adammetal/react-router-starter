@@ -1,6 +1,6 @@
-import styled from 'styled-components';
-import { useState, useEffect } from 'react';
-import Store from '../lib/store/store';
+import styled from "styled-components";
+import { useState, useEffect } from "react";
+import ArrayStore from "../lib/store/array-store";
 
 const Grid = styled.div`
   display: grid;
@@ -21,23 +21,23 @@ const CatCard = (props) => (
   <Card>
     <Img src={props.url} />
   </Card>
-)
+);
 
-const CatGrid = () => {
+const CatGrid = (props) => {
   const [cats, setCats] = useState([]);
 
   useEffect(() => {
-    const farm = new Store('farm');
-    setCats(farm.load([]));
-  }, []);
+    const farm = new ArrayStore(props.storeKey);
+    setCats(farm.load());
+  }, [props.storeKey]);
 
   return (
     <Grid>
       {cats.map((cat) => {
-        return <CatCard url={cat.url} key={cat.id} />
+        return <CatCard url={cat.url} key={cat.id} />;
       })}
     </Grid>
-  )
-}
+  );
+};
 
 export default CatGrid;
