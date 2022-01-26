@@ -1,7 +1,7 @@
 import useNetworkRequest from "../hooks/useNetworkRequest";
 import styled from "styled-components";
 import YesNoBtn from "./YesNoBtn";
-import Store from "../lib/store/store";
+import ArrayStore from "../lib/store/array-store";
 
 const CAT_API = "https://api.thecatapi.com/v1/images/search";
 
@@ -32,15 +32,14 @@ const CatDisplay = () => {
   const [cat, loading, fetchRandomKitten] = useNetworkRequest(CAT_API, catDataMapper);
 
   const handleYes = () => {
-    const farm = new Store('farm');
-    const cats = farm.load();
-    cats.push({ ...cat });
-    farm.save(cats);
-
+    const farm = new ArrayStore('farm');
+    farm.push({ ...cat });
     fetchRandomKitten();
   };
 
   const handleNo = () => {
+    const sad = new ArrayStore('sad-farm');
+    sad.push(({ ...cat }));
     fetchRandomKitten();
   };
 

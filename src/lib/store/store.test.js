@@ -1,3 +1,4 @@
+import ArrayStore from "./array-store";
 import Store from "./store";
 
 beforeAll(() => {
@@ -34,3 +35,16 @@ describe("Store Tests", () => {
     expect(farm.load([])).toStrictEqual([]);
   });
 });
+
+describe("ArrayStore Tests", () => {
+  test("push method", () => {
+    const arrStore = new ArrayStore('array-store-1');
+    arrStore.push({ foo: 'bar' });
+    expect(arrStore.load()).toStrictEqual([{ foo: 'bar' }])
+  });
+
+  test("load method", () => {
+    const arrStore = new ArrayStore('array-store-2');
+    expect(arrStore.load()).toStrictEqual([]);
+  });
+})
