@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { useState, useEffect } from "react";
-import ArrayStore from "../lib/store/array-store";
+import ArrayStore from "../../lib/store/array-store";
 
 const Grid = styled.div`
   display: grid;
