@@ -1,7 +1,7 @@
-import useNetworkRequest from "../hooks/useNetworkRequest";
+import useNetworkRequest from "../../hooks/useNetworkRequest";
 import styled from "styled-components";
-import YesNoBtn from "./YesNoBtn";
-import ArrayStore from "../lib/store/array-store";
+import YesNoBtn from "../YesNoBtn";
+import ArrayStore from "../../lib/store/array-store";
 
 const CAT_API = "https://api.thecatapi.com/v1/images/search";
 

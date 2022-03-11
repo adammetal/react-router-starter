@@ -1,18 +1,6 @@
 import ArrayStore from "./array-store";
 import Store from "./store";
 
-beforeAll(() => {
-  global.localStorage = {
-    storage: {},
-    getItem: function (key) {
-      return this.storage[key] ?? null;
-    },
-    setItem: function (key, value) {
-      this.storage[key] = value;
-    },
-  };
-});
-
 describe("Store Tests", () => {
   test("#save", () => {
     const farm = new Store("farm");
