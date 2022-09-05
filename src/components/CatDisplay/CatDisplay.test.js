@@ -3,6 +3,7 @@ import {
   render,
   screen,
   waitForElementToBeRemoved,
+  cleanup
 } from "@testing-library/react";
 import ArrayStore from "../../lib/store/array-store";
 import CatDisplay from "./CatDisplay";
@@ -24,6 +25,7 @@ const testData = [
 ];
 
 beforeEach(() => {
+  cleanup();
   // mock
   global.fetch = jest.fn(() =>
     Promise.resolve({

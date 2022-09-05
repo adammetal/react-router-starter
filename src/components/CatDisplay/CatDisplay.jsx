@@ -2,6 +2,7 @@ import useNetworkRequest from "../../hooks/useNetworkRequest";
 import styled from "styled-components";
 import YesNoBtn from "../YesNoBtn";
 import ArrayStore from "../../lib/store/array-store";
+import { useEffect, useState } from "react";
 
 const CAT_API = "https://api.thecatapi.com/v1/images/search";
 
@@ -24,35 +25,57 @@ const Img = styled.img`
   width: 100%;
 `;
 
-const CatImage = (props) => {
-  return <Img src={props.src} alt="cat" />;
+const CatImage = ({ src }) => {
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    setLoading(true);
+
+    const img = document.createElement("img");
+    img.src = src;
+
+    img.addEventListener("load", () => {
+      setLoading(false);
+    });
+  }, [src]);
+
+  if (loading) {
+    return <div style={{ height: "600px" }}>Loading the image...</div>;
+  }
+
+  return <Img style={{ height: "600px" }} src={src} alt="cat" />;
 };
 
 const CatDisplay = () => {
-  const [cat, loading, fetchRandomKitten] = useNetworkRequest(CAT_API, catDataMapper);
+  const [cat, loading, fetchRandomKitten] = useNetworkRequest(
+    CAT_API,
+    catDataMapper
+  );
 
   const handleYes = () => {
-    const farm = new ArrayStore('farm');
+    const farm = new ArrayStore("farm");
     farm.push({ ...cat });
     fetchRandomKitten();
   };
 
   const handleNo = () => {
-    const sad = new ArrayStore('sad-farm');
-    sad.push(({ ...cat }));
+    const sad = new ArrayStore("sad-farm");
+    sad.push({ ...cat });
     fetchRandomKitten();
   };
 
   return (
     <CatBox>
-      {loading === true ? (
-        <h1>Loading....</h1>
-      ) : (
-        <>
-          <CatImage src={cat.url} />
-          <YesNoBtn onYes={handleYes} onNo={handleNo} />
-        </>
-      )}
+      <div style={{ backgroundColor: "red", width: "auto", height: "600px" }}>
+        {loading === true ? (
+          <h1>Loading....</h1>
+        ) : (
+          <>
+            <CatImage src={cat.url} />
+            <YesNoBtn onYes={handleYes} onNo={handleNo} />
+          </>
+        )}
+      </div>
     </CatBox>
   );
 };
