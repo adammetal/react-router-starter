@@ -6,12 +6,12 @@ exports[`YesNoButton Snapshot test 1`] = `
     Do you need that kitten???
     <div>
       <button
-        class="sc-bdvvtL sc-gsDKAQ khgiVi jlniZw"
+        class="sc-bczRLJ sc-gsnTZi cHRURN deEhbE"
       >
         Yes
       </button>
       <button
-        class="sc-bdvvtL sc-dkPtRN khgiVi flXrLY"
+        class="sc-bczRLJ sc-dkzDqf cHRURN kekkCb"
       >
         No
       </button>
